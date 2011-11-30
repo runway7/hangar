@@ -1,7 +1,7 @@
 <!--
 ~~~
 title: Partial Functions / Currying in Python
-publish: no
+publish: yes
 tags: python, functional, forklift
 slug: /partial-functions-in-python
 ~~~
