@@ -4,6 +4,7 @@ title: Tracking changes to files
 publish: yes
 tags: [python, forklift]
 slug: /tracking-changes-to-files
+date: 2011-11-23
 ~~~
 -->
 

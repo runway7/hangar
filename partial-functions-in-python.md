@@ -4,6 +4,7 @@ title: Partial Functions / Currying in Python
 publish: yes
 tags: [python, functional, forklift]
 slug: /partial-functions-in-python
+date: 2011-11-27
 ~~~
 -->
 
