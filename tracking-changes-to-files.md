@@ -2,7 +2,7 @@
 ~~~
 title: Tracking changes to files
 publish: yes
-tags: python, forklift
+tags: [python, forklift]
 slug: /tracking-changes-to-files
 ~~~
 -->

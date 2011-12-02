@@ -1,8 +1,8 @@
 <!--
 ~~~
-title: Rails Validations : A Technical Guide
+title: Rails Validations \: A Technical Guide
 publish: no
-tags: ruby, rails, validation, technical-guide
+tags: [ruby, rails, validation, technical-guide]
 slug: /technical-guides/rails-vaildations
 ~~~
 -->
