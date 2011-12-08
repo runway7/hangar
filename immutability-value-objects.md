@@ -1,6 +1,6 @@
 <!--
 ~~~
-title: The Unchangeables: Immutability and Value Objects
+title: "The Unchangeables: Immutability and Value Objects"
 slug: /immutability-and-value-objects
 date: 2011-12-07
 publish: no
