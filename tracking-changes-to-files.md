@@ -12,7 +12,7 @@ date: 2011-11-23
 
 When you run a `watch` in [Forklift][forklift], it waits for files to be changed and runs tests on each change. This took a little bit of work to get right. 
 
-Actually watching the files themselves is fairly easy, especially with the the [Watchdog][watchdog] library in Python. Unfortunately, it seems to work a little oddly on MacOS X - it kept raising the same file modification event multiple times. This might be because it's still using `kqueue` instead of `FSEvent`, or because of Lion doing its intelligent autosave… I haven't really checked. 
+Actually watching the files themselves is fairly easy, especially with the [Watchdog][watchdog] library in Python. Unfortunately, it seems to work a little oddly on MacOS X - it kept raising the same file modification event multiple times. This might be because it's still using `kqueue` instead of `FSEvent`, or because of Lion doing its intelligent autosave… I haven't really checked. 
 
 It was also slightly irritating to realize that the events were being raised every time I hit save, because the tests would start and fill the screen with Growl notification. Action doesn't need to be taken on every file modification event - only when the file is actually changed. 
 
