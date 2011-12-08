@@ -10,7 +10,7 @@ tags: [python]
 
 # Packing and Unpacking Arguments in Python
 
-Ever wondered what the `*args` and `**kwargs` that you keeps seeing in Python functions mean? I certainly did. So I did some searching and it turns they're pretty nifty, not to mention useful. 
+Ever wondered what the `*args` and `**kwargs` that you keep seeing in Python functions mean? I certainly did. So I did some searching and it turns they're pretty nifty, not to mention useful. 
 
 That `*` and the `**` operators both perform two different, but complementary operations depending on where they're used. When used in a method definition, like so:
 
