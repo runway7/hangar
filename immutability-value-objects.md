@@ -27,21 +27,21 @@ One example that I exercise that I use often is a length conversion problem:
 When people try this in Java, here's some of the code I commonly see:
 
     :::java
-    Meter l1 = new Meter(1);
-    Centimeter l2 = Units.convertMeterToCentimeter(l1);
-    Millimeter l3 = Units.convertCentimeterToMillimeter(l2);
-    Meter l4 = Units.convertMillimeterToMeter(l3);
-    assertEquals(l1, l4);
+    Meter lengthOne = new Meter(1);
+    Centimeter lengthTwo = Units.convertMeterToCentimeter(lengthOne);
+    Millimeter lengthThree = Units.convertCentimeterToMillimeter(lengthTwo);
+    Meter lengthFour = Units.convertMillimeterToMeter(lengthThree);
+    assertEquals(lengthOne, lengthFour);
 
 While this would technically get the job done, the API here is horrendous. The number of static conversion methods will quickly explode as we add more types of units, there's isn't much type safety (I can't just accept a `Length` without caring what unit it is) and it just looks really ugly. 
 
 With a little thought and skill, this can quickly be re-written to
 
     :::java
-    Length l1 = new Meter(1);
-    Length l2 = new Centimeter(10)
-    assertEquals(l1, l2);
-    new Millimeter(l1).toString() //-> 1000mm 
+    Length oneMeter = new Meter(1);
+    Length tenCentimeters = new Centimeter(10)
+    assertEquals(oneMeter, tenCentimeters);
+    new Millimeter(oneMeter).toString() //-> 1000mm 
 
 The foundational premise here is that all objects representing length (of any unit) are basically just holding one value - a distance. That's all that matters. Everything else is just cruft. 
 
