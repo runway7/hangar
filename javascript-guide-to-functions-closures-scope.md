@@ -102,13 +102,28 @@ Let's use what we've looked as so far to build a simple calculator.
 
     var plus = function(x,y){ return x + y };
     var minus = function(x,y){ return x - y };
-    // … you can add more operations if you like
 
     var operations = {
         '+': plus,
         '-': minus
     };
 
+The more functional way to use this would probalby be someting like this:
+
+    var calculate = function(x, y, operation){
+        return operations[operation](x, y);
+    }
+    
+    calculate(38, 4, '+');
+    calculate(47, 3, '-');
+    
+On the other hand, let's try something a little more object-oriented. While most 'object oriented' langauges today use class based inheritance, JavaScript uses prototypes. There is no class construct here, but it's still a very powerful langauage. Let's see how they work.
+
+    var Problem = function(){
+        
+    }
+    
+    
 
 
 
