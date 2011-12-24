@@ -119,9 +119,33 @@ The more functional way to use this would probalby be someting like this:
     
 On the other hand, let's try something a little more object-oriented. While most 'object oriented' langauges today use class based inheritance, JavaScript uses prototypes. There is no class construct here, but it's still a very powerful langauage. Let's see how they work.
 
-    var Problem = function(){
-        
+    var Problem = function(x, y){
+        this.x = x;
+        this.y = y;        
+        return this;
     }
+    
+So here we have a function that takes two parameters, `x` and `y` and stores them, then returns itself. Now keep in mind that since functions are simply objects, you can easily do this:
+
+    var problem1 = new Problem(4, 5);
+    alert(problem1.x);
+    alert(problem1.y);
+    
+Now we'd like to have our `Problem`s capable to solving themselves, so lets do this:
+
+    Problems.prototype.operations = {
+        '+': function(x,y){ return x + y },
+        '-': function(x,y){ return x - y }
+    };
+    
+    Problem.prototype.calculate = function(operation){
+        return this.operations[operation](this.x, this.y);
+    };
+    
+    problem1.calculate('+');
+    problem1.calculate('-');
+    
+There are more than a few take-aways form this code. First of all, what's the `prototype` 
     
     
 
