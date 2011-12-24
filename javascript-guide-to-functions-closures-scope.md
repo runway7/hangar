@@ -145,7 +145,7 @@ Now we'd like to have our `Problem`s capable to solving themselves, so lets do t
     problem1.calculate('+');
     problem1.calculate('-');
     
-There are more than a few take-aways form this code. First of all, what's the `prototype` 
+There are more than a few take-aways form this code. First of all, what's the `prototype` in there doing?
     
     
 
