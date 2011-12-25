@@ -145,7 +145,7 @@ Now we'd like to have our `Problem`s capable to solving themselves, so lets do t
     problem1.calculate('+');
     problem1.calculate('-');
     
-There are more than a few take-aways form this code. First of all, what's the `prototype` in there doing?
+There are more than a few take-aways form this code. First of all, what's the `prototype` in there doing? Turns out prototype is how JavaScript does inheritance, or what passes for it here. The prototype of an object is simply another object that this one is 'based' on. What it tells the interpreter is that if there's any function of property that you attempt to access on an object that it can't find in that object itself, then it needs to look at the prototype in turn to resolve it. 
     
     
 
