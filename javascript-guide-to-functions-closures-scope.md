@@ -14,6 +14,7 @@ Throughout my time writing Javascript code, I've come to realize that while I lo
 
 Let's dive in with objects and variables. 
 
+    :::javascript
     var name = 'zaphod';
     var age = 42;
 
@@ -21,50 +22,59 @@ That was easy. The `var` keyword restricts the scope of the variables and preven
 
 Now how about
 
+    :::javascript
 	 var person = {name: 'zaphod', age: 42};
 
 That's a little more interesting. What we're doing here is creating one variable, `person`. That variable contains the `name` and the `age` in a simple key value store… a map, if you will. Interestingly, it turns out that all Javascript objects can be thought of this way; they're all essentially key-value maps, or dictionaries. 
 
 Accessing the data in these objects is easy:
 
+    :::javascript
 	 alert(person.name);
 	 alert(person.age);
 
 What's more interesting is that this is equivalent to 
 
+    :::javascript
 	 alert(person['name']);
 	 alert(person['age']);
 
 This is the first 'aha' moment for most people, because it starts to give you a hazy idea of power that this approach gives you. More on that soon, though. Let's move on. 
 
+    :::javascript
     var sayHello = function(){
         alert('Hello.');    
     };
 
 There's a load of things to learn from the three lines above. First, this looks suspiciously like the way we normally define objects. *That's because it is.* Functions in JS are just glorified objects. Truth be told, they aren't even very glorified - they're just objects which can be 'called'.
 
+    :::javascript
     var sayHello = function(name, age) {
         return "Hello, I'm " + name + " and I'm " + age + "years old.";
     }
 
 Simple enough. They take arguments and they return values. Better still, we could write: 
 
+    :::javascript
     var sayHello = function(person) {
         return "Hello, I'm " + person.name + " and I'm " + person.age + "years old.";
     }
 
 So far so good. Call the function with your person, and you'd get what you expect. 
 
+    :::javascript
     sayHello(person);
 
 So way to *call* a function *object* is to use `()`, possibly with arguments inside. 
 
 But if functions are just objects themselves, then what's to stop us from doing this?
 
+    :::javascript
     person.doSomething = sayHello;
 
 So `person.doSomething(person)` should give the same result. That's good. But the `person` seems written there too many times, though. If we're calling the function off a person, why pass the person in again? Let's try something else:
 
+    :::javascript
     var sayHello = function() {
         return "Hello, I'm " + this.name + " and I'm " + this.age + "years old.";
     }
@@ -75,6 +85,7 @@ So that means running `sayHello()` (by itself) now will give you an error - `thi
 
 This should give us what we want:
     
+    :::javascript
     person.doSomething = sayHello;
     person.doSomething();
 
@@ -84,6 +95,7 @@ We still haven't modified `sayHello` itself, though. So calling `sayHello()` wil
 
 Here's another interesting piece of code:
 
+    :::javascript
     var zaphod = {name: 'Zaphod', age: 42};
     var marvin = {name: 'Marvin', age: 420000000000;}
 
@@ -100,6 +112,7 @@ We already saw this in the last example: the function was actually defined in th
 
 Let's use what we've looked at so far to build a simple calculator. 
 
+    :::javascript
     var plus = function(x,y){ return x + y };
     var minus = function(x,y){ return x - y };
 
@@ -110,6 +123,7 @@ Let's use what we've looked at so far to build a simple calculator.
 
 The functional way to use this would probalby be someting like this:
 
+    :::javascript
     var calculate = function(x, y, operation){
         return operations[operation](x, y);
     }
@@ -121,6 +135,7 @@ This example also shows how absurdly easy it is to implement some patterns like 
 
 On the other hand, let's try something a little more object-oriented. While most 'object oriented' langauges today use class based inheritance, JavaScript uses prototypes. There is no class construct here, but it's still a very powerful langauage. Let's see how things work:
 
+    :::javascript
     var Problem = function(x, y){
         this.x = x;
         this.y = y;        
@@ -134,12 +149,14 @@ Remember that `Problem` itself is a perfectly normal function - we only capitali
 
 Also keep in mind that since functions are simply objects, we can easily do this:
 
+    :::javascript
     alert(problem1.x);
     alert(problem1.y);
 
     
 Now we'd like to have our `Problem` capable of solving itself, so let's do this:
 
+    :::javascript
     Problem.prototype.operations = {
         '+': function(x,y){ return x + y; },
         '-': function(x,y){ return x - y; }
@@ -168,6 +185,7 @@ We also notice that this prototype resolution (like most things in JavaScript) i
 
 Let's add one final method to our `Problem`:
 
+    :::javascript
     Problem.prototype.newMessageMaker = function(){
         var self = this;
         var formatter = function(x, y){
