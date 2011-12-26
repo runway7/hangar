@@ -78,7 +78,7 @@ This should give us what we want:
     person.doSomething = sayHello;
     person.doSomething();
 
-Now when `doSomething` runs, it executes in the scope of `person`. So `this.name` and `this.age` will use that's person object's data. 
+Now when `doSomething` runs, it executes in the scope of `person`. So `this.name` and `this.age` will use the data in the `person` object. 
 
 We still haven't modified `sayHello` itself, though. So calling `sayHello()` will still give the error. `doSomething` only has a *reference* to the same function that `sayHello` has. You can confirm this by subsequently setting `sayHello` to something else. `person.doSomething` will continue to work as expected. 
 
@@ -125,20 +125,23 @@ On the other hand, let's try something a little more object-oriented. While most
         this.x = x;
         this.y = y;        
     }
+
+    var problem1 = new Problem(4, 5);
     
 So here we have a function that takes two parameters, `x` and `y` and stores them. Now keep in mind that since functions are simply objects, you can easily do this:
 
-    var problem1 = new Problem(4, 5);
     alert(problem1.x);
     alert(problem1.y);
 
 The `new` keyword is essential here because it tells the interpreter that you're using `Problem` not as a function, but as a constructor instead. Leaving it out will simply execute the `Problem` function, which returns nothing, so `problem1` will have no value. The `new` keyword gives us a copy of the function object after running it, while preserving the original intact (so we can use it to make more `problem` objects).
+
+Remember that `Problem` itself is a perfectly normal function - we only capitalize the 'P' as a convention to remind ourselves to use the `new` keyword, and all the constructor behavior comes from the use of the `new` keyword. 
     
 Now we'd like to have our `Problem` capable of solving itself, so let's do this:
 
     Problem.prototype.operations = {
-        '+': function(x,y){ return x + y },
-        '-': function(x,y){ return x - y }
+        '+': function(x,y){ return x + y; },
+        '-': function(x,y){ return x - y; }
     };
     
     Problem.prototype.calculate = function(operation){
@@ -154,9 +157,9 @@ In JS, each and every object has one built-in property called the `__proto__`. T
 
 Conversely, modifying a prototype to add new features to it will result in that new feature being available to all the objects which have that prototype. 
 
-The prototype model in JS works similar to the class model in other languages, in the sense that when a method is not found in the class definition of an object, it's superclass is then checked, and so on. The same process takes place here - first the object is checked. If the method or property is not found, it's `__proto__` is checked, then it's prototype's `__proto__` and so on, until the interpreter hits the last object on the chain (`__proto__` is `null`).
+The prototype model in JS works similar to the class model in other languages, in the sense that when a method is not found in the class definition of an object, it's superclass is then checked, then the superclass' superclass, and so on. The same process takes place here - first the object is checked. If the method or property is not found, it's `__proto__` is checked, then it's prototype's `__proto__` and so on, until the interpreter hits the last object on the chain (`__proto__` is `null`).
 
-You'll notice though, that we haven't touched `__proto__` anywhere in our code. That's because it doesn't make sense to and is a *very bad idea* to do so. Instead JS lets you use the `prototype` object on the function that you're using as a constructor (`Problem`, in this case) to specify the behaviour of the prototypes of the constructed objects.
+You'll notice though, that we haven't touched `__proto__` anywhere in our code. That's because it doesn't make sense to and is a *very bad idea* to do so. Instead JS lets you use the `prototype` object on the function that you're using as a constructor (`Problem`, in this case) to specify the behavior of the prototypes of the constructed objects. It automatically sets the `__proto__` of the constructed objects to `Problem.prototype` for you. 
     
  
 
