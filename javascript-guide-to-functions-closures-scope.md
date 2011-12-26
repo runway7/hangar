@@ -117,23 +117,26 @@ The more functional way to use this would probalby be someting like this:
     calculate(38, 4, '+');
     calculate(47, 3, '-');
     
+This example also shows how absurdly easy it is to implement some patterns like the [strategy pattern](http://en.wikipedia.org/wiki/Strategy_pattern) in JavaScript. While I've never liked implementing patterns for their own sake, this is still something to remember. 
+
 On the other hand, let's try something a little more object-oriented. While most 'object oriented' langauges today use class based inheritance, JavaScript uses prototypes. There is no class construct here, but it's still a very powerful langauage. Let's see how they work.
 
     var Problem = function(x, y){
         this.x = x;
         this.y = y;        
-        return this;
     }
     
-So here we have a function that takes two parameters, `x` and `y` and stores them, then returns itself. Now keep in mind that since functions are simply objects, you can easily do this:
+So here we have a function that takes two parameters, `x` and `y` and stores them. Now keep in mind that since functions are simply objects, you can easily do this:
 
     var problem1 = new Problem(4, 5);
     alert(problem1.x);
     alert(problem1.y);
-    
-Now we'd like to have our `Problem`s capable to solving themselves, so lets do this:
 
-    Problems.prototype.operations = {
+The `new` keyword is essential here because it tells the interpreter that you're using `Problem` not as a function, but as a constructor instead. Leaving it out will simply execute the `Problem` function, which returns nothing, so `problem1` will have no value. The `new` keyword gives us a copy of the function object after running it, while preserving the original intact (so we can use it to make more `problem` objects).
+    
+Now we'd like to have our `Problem` capable of solving itself, so let's do this:
+
+    Problem.prototype.operations = {
         '+': function(x,y){ return x + y },
         '-': function(x,y){ return x - y }
     };
@@ -145,14 +148,17 @@ Now we'd like to have our `Problem`s capable to solving themselves, so lets do t
     problem1.calculate('+');
     problem1.calculate('-');
     
-There are more than a few take-aways form this code. First of all, what's the `prototype` in there doing? Turns out prototype is how JavaScript does inheritance, or what passes for it here. The prototype of an object is simply another object that this one is 'based' on. What it tells the interpreter is that if there's any function of property that you attempt to access on an object that it can't find in that object itself, then it needs to look at the prototype in turn to resolve it. 
+So here's our first look at the JavaScript `prototype`. Although it's one of the cornerstones of the language, it's possible to write JS for years and not come across any reason to use it. Like most things, though, understanding it is essential to mastery. 
+
+In JS, each and every object has one built-in property called the `__proto__`. This property refers to another object which is considered the prototype for this object, a sort of *parent* or *mould* or *original* from which this object was created. This is a very useful link because it means that all objects have the properties and methods of their prototype. 
+
+Conversely, modifying a prototype to add new features to it will result in that new feature being available to all the objects which have that prototype. 
+
+The prototype model in JS works similar to the class model in other languages, in the sense that when a method is not found in the class definition of an object, it's superclass is then checked, and so on. The same process takes place here - first the object is checked. If the method or property is not found, it's `__proto__` is checked, then it's prototype's `__proto__` and so on, until the interpreter hits the last object on the chain (`__proto__` is `null`).
+
+You'll notice though, that we haven't touched `__proto__` anywhere in our code. That's because it doesn't make sense to and is a *very bad idea* to do so. Instead JS lets you use the `prototype` object on the function that you're using as a constructor (`Problem`, in this case) to specify the behaviour of the prototypes of the constructed objects.
     
-    
-
-
-
-
-    
+ 
 
 
 
