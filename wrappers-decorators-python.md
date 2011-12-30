@@ -47,10 +47,10 @@ A lot of libraries and frameworks offer useful decorators - one of my favorites 
 
 This is why decorators are also called 'wrappers'. What Python does when it sees `@decorator` is to call the `decorator` function with the wrapped function as it's first argument (in this case the `show_page` function). 
 
-The implicit contract is that the decorator will return another function, that will be called in place of the decorated function. 
+The implicit contract is that the decorator will return another function that will be called in place of the decorated function. 
 This new function that you return in the decorator might or might not call the function being decorated, but it's expected that it does. Wouldn't be very useful otherwise, would it?
 
-So the `authenticate` decorator defines a new function called `authenticate_and_call` and returns this. This function is now going to be used instead of `show_page`. Calling if first checks if the request is authentic, and then calls `show_page`.
+So the `authenticate` decorator defines a new function called `authenticate_and_call` and returns this. This function is now going to be used instead of `show_page`. Calling it first checks if the request is authentic, and then calls `show_page`.
 
 ###Common Gotchas
 
