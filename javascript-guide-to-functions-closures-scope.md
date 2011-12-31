@@ -188,7 +188,7 @@ Let's add one final method to our `Problem`:
     :::javascript
     Problem.prototype.newMessageMaker = function(){
         var self = this;
-        var formatter = function(x, y){
+        var formatter = function(){
             return 'Values: ' + self.x + ' and ' + self.y;
         };
 
@@ -214,6 +214,11 @@ This is also how the trick with the `self` variable works. We can't really use `
 Closures are especially useful in AJAX code. More often than not, you'll find yourself passing a function to the AJAX library to run after a particular server call is finished. If you need that function to have access to any special data that you don't want to give the library, closures are a great way to do it. 
 
 This is a fairly small start down the road to JavaScript mastery and there's still a long way to go, but, as always, actually trying things out and reading other people's good code is a great way to move forward. 
+
+**Edits & Credits:** 
+
+* Thanks to Matthew for pointing out that `formatter(x, y)` should have been `formatter()` in the closures example.
+
 
 
 
