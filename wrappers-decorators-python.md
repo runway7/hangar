@@ -118,9 +118,28 @@ We've simply added another level to the way decorators normally work. In terms o
     :::python
     authorized_show_page = authorize('admin')(authenticate(show_page))
 
-So they're a little more complex, but easy once you get your head around them.
+Another (simpler) form of writing this would be as a plain class:
+
+    :::python
+    class Authorize(object):
+        def __init__(self, role):
+            self.role = role        
+        def __call__(self, func):
+            def authorize_and_call(*args, **kwargs):
+                if not current_user.has(role): 
+                    raise Exception('Unauthorized Access!')
+                func(*args, **kwargs)
+            return authorize_and_call
+
+Both these methods are functionally equivalent - use whichever style makes more sense to you.             
+
+So meta-decorators are a little more complex when written as functions, but easier when expressed as classes. Either way, they're pretty neat once you wrap your head around them. 
 
 Have fun using decorators - they're a great way to clean up, cut down and make your code much more readable. The only (rare) problem is that they might make your functions a little more difficult to test because of the unrelated code that runs every time they're called. 
+
+**Edits & Credits:**
+
+* Thanks to [redditor hylje](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cqik6) for the idea of expressing decorators as simple classes. Makes things a lot easier to understand. 
 
 
 
