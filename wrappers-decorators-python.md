@@ -128,7 +128,7 @@ Another (simpler) form of writing this would be as a plain class:
             def authorize_and_call(*args, **kwargs):
                 if not current_user.has(role): 
                     raise Exception('Unauthorized Access!')
-                func(*args, **kwargs)
+                return func(*args, **kwargs)
             return authorize_and_call
 
 Both these methods are functionally equivalent - use whichever style makes more sense to you.             
@@ -140,6 +140,10 @@ Have fun using decorators - they're a great way to clean up, cut down and make y
 **Edits & Credits:**
 
 * Thanks to [redditor hylje](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cqik6) for the idea of expressing decorators as simple classes. Makes things a lot easier to understand. 
+
+* Thanks to [redditor Allanon001](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cx4pv) for pointing out that I'd forgotten the `return` in the decorator class example. 
+
+
 
 
 
