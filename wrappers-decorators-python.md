@@ -135,11 +135,13 @@ Both these methods are functionally equivalent - use whichever style makes more 
 
 So meta-decorators are a little more complex when written as functions, but easier when expressed as classes. Either way, they're pretty neat once you wrap your head around them. 
 
+One final point thing to keep in mind is that trying to check the `__name__` and `__doc__` of a wrapped function will get these values from the wrapper instead. This might mess things up for documentation generation tools or other kinds of code that rely on this information. The simple workaround is to use the `@wraps` decorator from the `functools` [library](http://docs.python.org/library/functools.html#functools.update_wrapper). This calls `update_wrapper` method from `functools` which sets these built-in values to those of the wrapped function. Take a look at the [documentation](http://docs.python.org/library/functools.html#functools.wraps) to see how it works. The `functools` library also has [other cool utilities](/partial-functions-in-python) that you can use. 
+
 Have fun using decorators - they're a great way to clean up, cut down and make your code much more readable. The only (rare) problem is that they might make your functions a little more difficult to test because of the unrelated code that runs every time they're called. 
 
 **Edits & Credits:**
 
-* Thanks to [redditor hylje](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cqik6) for the idea of expressing decorators as simple classes. Makes things a lot easier to understand. 
+* Thanks to [redditor hylje](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cqik6) for the idea of expressing decorators as simple classes. Makes things a lot easier to understand. Thanks also for the lead on `functools.wrap`.
 
 * Thanks to [redditor Allanon001](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cx4pv) for pointing out that I'd forgotten the `return` in the decorator class example. 
 
