@@ -104,7 +104,7 @@ They're actually simpler than they sound, though. They're just decorators that t
             def authorize_and_call(*args, **kwargs):
                 if not current_user.has(role): 
                     raise Exception('Unauthorized Access!')
-                func(*args, **kwargs)
+                return func(*args, **kwargs)
             return authorize_and_call
         return wrapper
 
