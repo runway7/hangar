@@ -121,7 +121,7 @@ Let's use what we've looked at so far to build a simple calculator.
         '-': minus
     };
 
-The functional way to use this would probalby be someting like this:
+The functional way to use this would probably be something like this:
 
     :::javascript
     var calculate = function(x, y, operation){
@@ -133,7 +133,7 @@ The functional way to use this would probalby be someting like this:
     
 This example also shows how absurdly easy it is to implement some patterns like the [strategy pattern](http://en.wikipedia.org/wiki/Strategy_pattern) in JavaScript. While I've never liked implementing patterns for their own sake, this is still something to remember. 
 
-On the other hand, let's try something a little more object-oriented. While most 'object oriented' langauges today use class based inheritance, JavaScript uses prototypes. There is no class construct here, but it's still a very powerful langauage. Let's see how things work:
+On the other hand, let's try something a little more object-oriented. While most 'object oriented' languages today use class based inheritance, JavaScript uses prototypes. There is no class construct here, but it's still a very powerful language. Let's see how things work:
 
     :::javascript
     var Problem = function(x, y){
@@ -213,12 +213,13 @@ This is also how the trick with the `self` variable works. We can't really use `
 
 Closures are especially useful in AJAX code. More often than not, you'll find yourself passing a function to the AJAX library to run after a particular server call is finished. If you need that function to have access to any special data that you don't want to give the library, closures are a great way to do it. 
 
-This is a fairly small start down the road to JavaScript mastery and there's still a long way to go, but, as always, actually trying things out and reading other people's good code is a great way to move forward. 
+This is a fairly small start down the road to JavaScript mastery and there's still a long way to go, but, as always, actually trying things out and reading other people's good code is a great way to move forward.
 
 **Edits & Credits:** 
 
 * Thanks to Matthew for pointing out that `formatter(x, y)` should have been `formatter()` in the closures example.
 
+* Thanks to Marc Prud'hommeaux for taking the time to point out my typos.
 
 
 
