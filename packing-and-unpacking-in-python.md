@@ -27,7 +27,7 @@ So how do you pass these packed arguments to another method? Here's where *unpac
     :::python
     def __init__(self, *args, **kwargs):
         # do some stuff
-        super(self.__class__, self).__init__(self, *args, **kwargs)
+        super(AwesomeClass, self).__init__(self, *args, **kwargs)
         #                                            ^
         #                                        LOOK HERE!
 
@@ -68,3 +68,7 @@ Combined together packing and unpacking lets you do a lot of things like:
 * write better and more resilient wrappers 
 
 I'm sure there's a lot more uses you can think of and see for these little `*`s. Have fun. 
+
+**Edits & Credits:**
+
+* Thanks to [Florian Mayer](http://twitter.com/#!/segfaulthunter) for pointing out that `super(self.__class__, self).__init__()` would result in infinite recursion if a subclass also did the same thing. 
