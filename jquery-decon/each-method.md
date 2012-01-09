@@ -25,7 +25,7 @@ The signature of the this method is:
 
 The first branch is the check for the presence of `args`. Based on this, the authors either `call` the `callback` or `apply` the given arguments to it. (For the difference between `call` and `apply`, look here). This is because `args` needs to be an array and when calling the `callback` the only way to pass in these extra arguments is by using `apply`. 
 
-The next branch is the check to see if the `object` is a an array (or acts like an array) or a normal 'object' (more of a dictionary). In the former (array) case, we see
+The next branch is the check to see if the `object` is a an array (or acts like an array) or a normal object (more of a dictionary). In the former (array) case, we see
 
     :::javascript
     for ( var i = 0; i < length; i++) {...}
