@@ -97,7 +97,7 @@ Here's another interesting piece of code:
 
     :::javascript
     var zaphod = {name: 'Zaphod', age: 42};
-    var marvin = {name: 'Marvin', age: 420000000000;}
+    var marvin = {name: 'Marvin', age: 420000000000};
 
     zaphod.sayHello = function(){
         return "Hi, I'm " + this.name;
@@ -221,7 +221,7 @@ This is a fairly small start down the road to JavaScript mastery and there's sti
 
 * Thanks to Marc Prud'hommeaux for taking the time to point out my typos.
 
-
+* Thanks to Gavin M for pointing out a misplaced semicolon next to Marvin's age.
 
 
 
