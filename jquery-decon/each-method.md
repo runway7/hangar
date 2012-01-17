@@ -2,15 +2,15 @@
 ~~~
 title: "jQuery Deconstructed: The .each() method"
 slug: /jquery-deconstructed-each-method
-date: 2011-12-07
-publish: no
+date: 2012-01-17
+publish: yes
 tags: [javascript, jquery, deconstructed,jq-decon]
 ~~~
 -->
 
 #jQuery Deconstructed: The .each() method
 
-*As a follow-up to the [Javascript guide][js-guide], the jQuery Deconstructed series takes a deeper look at how common jQuery code works. This is a look at the `jQuery.each()` function.*
+*As a follow-up to the [Javascript Guide][js-guide], the jQuery Deconstructed series takes a deeper look at how common jQuery code works. I'm doing the series to make me get into the habit of reading and understanding other people's code.*
 
 One of the fundamental functions of jQuery is the `.each()` function. Besides being incredibly useful in a wide variety of cases, it's also used extensively inside jQuery itself. One very common case is when you call any method on a jQuery collection returned by `$`. How do you think the method is applied on all the objects in the collection?
 
@@ -23,24 +23,39 @@ The signature of the this method is:
     :::javascript
     each: function( object, callback, args ) {...}
 
-The first branch is the check for the presence of `args`. Based on this, the authors either `call` the `callback` or `apply` the given arguments to it. (For the difference between `call` and `apply`, look here). This is because `args` needs to be an array and when calling the `callback` the only way to pass in these extra arguments is by using `apply`. 
+The first branch is the check for the presence of `args`. Based on this, the authors either `apply` the `args` on the `callback` or `call` it (for the difference between `call` and `apply`, look [here][call-apply]). This is because `args` is an array and the only way to pass it in as arguments is by using `apply`. Either way, `args` are apparently used only internally, so we'll look at the second (`call`) case.
 
-The next branch is the check to see if the `object` is a an array (or acts like an array) or a normal object (more of a dictionary). In the former (array) case, we see
-
-    :::javascript
-    for ( var i = 0; i < length; i++) {...}
-    // Yes, this isn't actually what's there, but bear with me.
-
-and in the latter (dictionary-like object) case we see 
+The next branch is the check to see if the `object` is a an array (or acts like an array) or a normal object (a dictionary or function). In the object case, we see
 
     :::javascript 
     for (name in object) {...}
 
+which is a shortcut to loop over the property keys of an object. Objects in Javascript [can all be thought of as key-value maps][js-guide], this being a handy way to iterate over the keys.
 
+    :::javascript
+    if ( callback.call( object[ name ], name, object[ name ] ) === false ) {
+        break;
+    } 
 
+This `call`s the `callback` in the context of `object[name]` which is basically the corresponding value for that key. The `callback` also gets the key and the value as it's parameters. 
+
+The interesting thing here is the terseness in which the iteration break is applied: if you don't want to continue with the loop, you can return `false` from the callback for any of the elements. Doing so will `break` out of the `for` loop and stop execution. 
+
+The array case is also very similar, except that here the index of the array takes the place of the key. 
+
+    :::javascript
+    for ( ; i < length; ) {
+        if ( callback.call( object[ i ], i, object[ i++ ] ) === false ) {
+            break;
+        }
+    }
+
+The *intelligent* code here is the `for ( ; i < length; )`: the first clause is dropped because `i` is declared before and the last clause is dropped because `i++` is written the last time it's accessed in the loop. It saves an extra two characters, but I wouldn't do it given the choice. This trick works **only** if you use `i++` as opposed to `++i` and **only** if you're careful to write it **only** the last time you access `i`. Seeing 'only' that many times in one sentence means there's something wrong.
+
+That wraps up `.each()`, making it the first in the jQuery deconstruction series. If you're curious about the inner workings of a particular jQuery method, do let me know.
     
 
-
+[call-apply]: http://hangar.runway7.net/javascript-difference-between-call-apply
 
 [full]: https://github.com/jquery/jquery/blob/255460e4836e86b86f48dd5b7d2a2cbf3f996de2/src/core.js#L607
 
