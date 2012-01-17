@@ -12,7 +12,7 @@ tags: [javascript, jquery, deconstructed,jq-decon]
 
 *As a follow-up to the [Javascript Guide][js-guide], the jQuery Deconstructed series takes a deeper look at how common jQuery code works. I'm doing the series to make me get into the habit of reading and understanding other people's code.*
 
-One of the fundamental functions of jQuery is the `.each()` function. Besides being incredibly useful in a wide variety of cases, it's also used extensively inside jQuery itself. One very common case is when you call any method on a jQuery collection returned by `$`. How do you think the method is applied on all the objects in the collection?
+One of the fundamental functions of jQuery is `.each()`. Besides being incredibly useful in a wide variety of cases, it's also used extensively inside jQuery itself. One very common case is when you call any method on a jQuery collection returned by `$`. How do you think the method is applied on all the objects in the collection?
 
 Take a look at the full method on the [jQuery Github repo][full]. We're going to be looking at portions of it one by one. 
 
@@ -23,9 +23,13 @@ The signature of the this method is:
     :::javascript
     each: function( object, callback, args ) {...}
 
-The first branch is the check for the presence of `args`. Based on this, the authors either `apply` the `args` on the `callback` or `call` it (for the difference between `call` and `apply`, look [here][call-apply]). This is because `args` is an array and the only way to pass it in as arguments is by using `apply`. Either way, `args` are apparently used only internally, so we'll look at the second (`call`) case.
+The first branch is the check for the presence of `args`. Based on that, the authors use either `apply` or `call` (for the difference between `call` and `apply`, look [here][call-apply]). Since `args` is an array, the only way to pass it in as arguments to the `callback` is by using `apply`. 
 
-The next branch is the check to see if the `object` is a an array (or acts like an array) or a normal object (a dictionary or function). In the object case, we see
+Either way, `args` are apparently used only internally, so we'll look at the second case that uses `call`.
+
+The next branch is the check to see if the `object` is a an array, or acts like one, as opposed to being an object like a dictionary or function. Looks like `isObj = length === undefined || jQuery.isFunction( object )` just looks for the presence of the `length` property, so I'm guessing that not being a function and not having a `length` makes an object a plain object. 
+
+In case it's an object, we see
 
     :::javascript 
     for (name in object) {...}
@@ -37,7 +41,7 @@ which is a shortcut to loop over the property keys of an object. Objects in Java
         break;
     } 
 
-This `call`s the `callback` in the context of `object[name]` which is basically the corresponding value for that key. The `callback` also gets the key and the value as it's parameters. 
+This `call`s the `callback` in the context of `object[name]` which is basically the corresponding value for that key. The `callback` also gets the key and the value as its parameters. 
 
 The interesting thing here is the terseness in which the iteration break is applied: if you don't want to continue with the loop, you can return `false` from the callback for any of the elements. Doing so will `break` out of the `for` loop and stop execution. 
 
@@ -50,7 +54,7 @@ The array case is also very similar, except that here the index of the array tak
         }
     }
 
-The *intelligent* code here is the `for ( ; i < length; )`: the first clause is dropped because `i` is declared before and the last clause is dropped because `i++` is written the last time it's accessed in the loop. It saves an extra two characters, but I wouldn't do it given the choice. This trick works **only** if you use `i++` as opposed to `++i` and **only** if you're careful to write it **only** the last time you access `i`. Seeing 'only' that many times in one sentence means there's something wrong.
+The *intelligent* code here is the `for ( ; i < length; )`: the first clause is dropped because `i` is already declared. The last clause is dropped because `i++` is used the last time `i` is accessed in the loop. It saves an extra two characters, but I wouldn't do it given the choice. This trick works **only** if you use `i++` as opposed to `++i` and **only** if you're careful to write it **only** the last time you access `i`. Seeing 'only' that many times in one sentence means there's something wrong.
 
 That wraps up `.each()`, making it the first in the jQuery deconstruction series. If you're curious about the inner workings of a particular jQuery method, do let me know.
     
