@@ -38,7 +38,48 @@ compiles to
 
 Most of the code here is the safety wrapper that CoffeeScript uses around all it's code. The `Animal` declaration uses the `(function(){})()` pattern of defining a function and calling it immediately. This helps a lot in preserving scope inside of the function - almost nothing leaks out. 
 
+So let's try
     :::coffeescript
     class Animal
     
     class Dog extends Animal
+
+which explodes to
+    :::javascript
+    var Animal, Dog,
+      __hasProp = Object.prototype.hasOwnProperty,
+      __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+    
+    Animal = (function() {    
+      function Animal() {}    
+      return Animal;    
+    })();
+    
+    Dog = (function(_super) {    
+      __extends(Dog, _super);    
+
+      function Dog() {
+        Dog.__super__.constructor.apply(this, arguments);
+      }
+    
+      return Dog;
+    
+    })(Animal);
+
+which, of course, is where all the fun stuff is. Here's the core:
+
+    :::javascript
+    __extends = function(child, parent) { 
+        for (var key in parent) { 
+            if (__hasProp.call(parent, key)) child[key] = parent[key]; 
+        } 
+        function ctor() { 
+            this.constructor = child; 
+        } 
+        ctor.prototype = parent.prototype; 
+        child.prototype = new ctor; 
+        child.__super__ = parent.prototype; 
+        return child; 
+    };
+
+The `for` loop simply copies any properties you might have set on the parent to the child. 
