@@ -1,7 +1,7 @@
 <!--
 ~~~
 title: "How CoffeeScript Class Modeling Works"
-slug: /coffeescript/coffeescript-class-model
+slug: /coffeescript/class-model
 date: 2012-02-23
 publish: yes
 tags: [javascript, coffeescript, oop]
