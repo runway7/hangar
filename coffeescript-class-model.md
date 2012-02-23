@@ -8,6 +8,8 @@ tags: [javascript, coffeescript, oop]
 ~~~
 -->
 
+#How CoffeeScript Class Modeling Works
+
 If you haven't taken a look at [CoffeeScript](http://coffeescript.org/), do it now. 
 
 Seriously. 
