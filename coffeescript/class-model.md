@@ -22,7 +22,7 @@ But it kept coming up everywhere I looked; and some of the [libraries](http://do
 
 So now I'm a convert to the Church of Coffee, and like [great](http://brendaneich.com/2011/01/harmony-of-my-dreams/) [men](http://alexmaccaw.com/) have already [said](https://github.com/maccman/spine/issues/91#issuecomment-1783011), "I'm never going to write another line of JS if I can help it."
 
-One of the things that intrigued me most about the language (or rather, dialect) was how the class construct would compile. ~~I've tried to use [Backbone's](http://documentcloud.github.com/backbone/) class construct, but its practice of copying parent classes to sub classes property by property goes against the very essence of Javascript and against the principles of code reusability. I think the latest version has moved to proper prototypal inheritance, but that's what got me thinking about this in the first place.~~ 
+One of the things that intrigued me most about the language (or rather, dialect) was how the class construct would compile. <del>I've tried to use [Backbone's](http://documentcloud.github.com/backbone/) class construct, but its practice of copying parent classes to sub classes property by property goes against the very essence of Javascript and against the principles of code reusability. I think the latest version has moved to proper prototypal inheritance, but that's what got me thinking about this in the first place.</del>
 
 **Edit**: *Jeremy Ashkenas mailed me to point out that this simply wasn't true - I'm chalking it down to my own ignorance at that time. I don't think I understood prototypes at all then.*
 
