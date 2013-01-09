@@ -1,30 +1,22 @@
-<!--
-~~~
-title: "The Difference between Call and Apply in Javascript"
-slug: /javascript-difference-between-call-apply
-date: 2012-01-09
-publish: yes
-tags: [javascript]
-~~~
--->
 
-#The Difference Between Call and Apply in Javascript
+# The Difference Between Call and Apply in Javascript
 
 One very common thing that trips me up when writing Javascript is knowing when to use `call` and when to use `apply`. If you're wondering what these methods are, or don't know how scope works in JavaScript, then it might make sense to read the [Javascript Guide][guide] first.
 
 Let's look at some ways we might want to use them:
 
-    :::javascript
-    var person1 = {name: 'Marvin', age: 42, size: '2xM'};
-    var person2 = {name: 'Zaphod', age: 42000000000, size: '1xS'};
+```javascript
+var person1 = {name: 'Marvin', age: 42, size: '2xM'};
+var person2 = {name: 'Zaphod', age: 42000000000, size: '1xS'};
     
-    var sayHello = function(){
-        alert('Hello, ' + this.name);
-    };
+var sayHello = function(){
+    alert('Hello, ' + this.name);
+};
 
-    var sayGoodbye = function(){
-        alert('Goodbye, ' + this.name);
-    };
+var sayGoodbye = function(){
+    alert('Goodbye, ' + this.name);
+};
+```
 
 Now if you've read the [guide][guide], this example will look really familiar. You'd already know that writing the following code:
 
