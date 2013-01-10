@@ -1,42 +1,36 @@
-<!--
-~~~
-title: "Quick and Easy Javascript Namespacing"
-slug: /javascript/namespacing
-date: 2012-01-22
-publish: yes
-tags: [javascript]
-~~~
--->
 
 One of the ways to stop polluting the global environment in  Javascript is namespacing - holding all your objects and data in a hierarchy  inside of one variable. 
 
 Let's say you want to write a method in `Foods.Grains.Wheat`, without worrying about `Foods` and `Foods.Grains`. Maybe they're in different files, being worked on by different teams, or whatever. While there are many ways to do this, here's one common way: 
 
-    :::javascript
-    window.Foods = window.Foods || {};
-    Foods.Grains = Foods.Grains || {};
-    Foods.Grains.Wheat = Foods.Grains.Wheat || {};
+```javascript
+window.Foods = window.Foods || {};
+Foods.Grains = Foods.Grains || {};
+Foods.Grains.Wheat = Foods.Grains.Wheat || {};
 
-    Foods.Grains.Wheat.harvest = function(){
-        // Do something
-    }
+Foods.Grains.Wheat.harvest = function(){
+  // Do something
+}
+```
 
 While this method gets the work done - you get to use the namespace without overwriting code from other files - it results in a lot of unnecessary code at the top of each file. You're essentially ensuring the existence of each namespace that you want to use, and doing it again at the top of each file. 
 
 There's an easier way, though:
     
-    :::javascript
-    var ns = function(namespace){
-        return namespace.split('.').reduce(function(holder, name){
-            holder[name] = holder[name] || {};
-            return holder[name];
-        }, window);
-    };
+```javascript
+var ns = function(namespace){
+  return namespace.split('.').reduce(function(holder, name){
+    holder[name] = holder[name] || {};
+    return holder[name];
+  }, window);
+};
+```
 
 Make sure that's included first, then do 
 
-    :::javascript
-    ns('Foods.Grains.Wheat');
+```javascript
+  ns('Foods.Grains.Wheat');
+```
 
 at the top of each file that you use it in. 
 

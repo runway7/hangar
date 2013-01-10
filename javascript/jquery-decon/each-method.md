@@ -1,14 +1,3 @@
-<!--
-~~~
-title: "jQuery Deconstructed: The .each() method"
-slug: /jquery-deconstructed-each-method
-date: 2012-01-17
-publish: yes
-tags: [javascript, jquery, deconstructed,jq-decon]
-~~~
--->
-
-#jQuery Deconstructed: The .each() method
 
 *As a follow-up to the [Javascript Guide][js-guide], the jQuery Deconstructed series takes a deeper look at how common jQuery code works. I'm doing the series to make me get into the habit of reading and understanding other people's code.*
 
@@ -20,8 +9,9 @@ The method is split into four implementations, of which one is used depending on
 
 The signature of the this method is:
     
-    :::javascript
-    each: function( object, callback, args ) {...}
+```javascript
+  each: function( object, callback, args ) {...}
+```
 
 The first branch is the check for the presence of `args`. Based on that, the authors use either `apply` or `call` (for the difference between `call` and `apply`, look [here][call-apply]). Since `args` is an array, the only way to pass it in as arguments to the `callback` is by using `apply`. 
 
@@ -31,15 +21,17 @@ The next branch is the check to see if the `object` is a an array, or acts like 
 
 In case it's an object, we see
 
-    :::javascript 
-    for (name in object) {...}
+```javascript 
+  for (name in object) {...}
+```
 
 which is a shortcut to loop over the property keys of an object. Objects in Javascript [can all be thought of as key-value maps][js-guide], this being a handy way to iterate over the keys.
 
-    :::javascript
-    if ( callback.call( object[ name ], name, object[ name ] ) === false ) {
-        break;
-    } 
+```javascript
+  if ( callback.call( object[ name ], name, object[ name ] ) === false ) {
+      break;
+  } 
+```
 
 This `call`s the `callback` in the context of `object[name]` which is basically the corresponding value for that key. The `callback` also gets the key and the value as its parameters. 
 
@@ -47,12 +39,13 @@ The interesting thing here is the terseness in which the iteration break is appl
 
 The array case is also very similar, except that here the index of the array takes the place of the key. 
 
-    :::javascript
-    for ( ; i < length; ) {
-        if ( callback.call( object[ i ], i, object[ i++ ] ) === false ) {
-            break;
-        }
-    }
+```javascript
+  for ( ; i < length; ) {
+      if ( callback.call( object[ i ], i, object[ i++ ] ) === false ) {
+          break;
+      }
+  }
+```
 
 The *intelligent* code here is the `for ( ; i < length; )`: the first clause is dropped because `i` is already declared. The last clause is dropped because `i++` is used the last time `i` is accessed in the loop. It saves an extra two characters, but I wouldn't do it given the choice. This trick works **only** if you use `i++` as opposed to `++i` and **only** if you're careful to write it **only** the last time you access `i`. Seeing 'only' that many times in one sentence means there's something wrong.
 

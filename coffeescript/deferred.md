@@ -1,15 +1,3 @@
-<!--
-~~~
-title: "Writing a Deferred Library from Scratch"
-slug: /coffeescript/deferred
-date: 2012-02-23
-publish: no
-tags: [javascript, coffeescript, deferred, from-scratch, promises]
-~~~
--->
-
-#Writing a Deferred Library from Scratch
-
 If you've been following the development of jQuery noticed the additions in 1.5, or if you've been writing a lot of asynchronous code, chances are you've heard, seen or used some form of a deferred library. 
 
 What is a deferred style, though? While there are a ton of pedantic definitions out there, I'm just going to say that it's a method of putting off running bits of code until some specific thing has already happened. 

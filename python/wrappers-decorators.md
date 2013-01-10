@@ -1,49 +1,42 @@
-<!--
-~~~
-title: "Decorators and Wrappers in Python"
-slug: /decorators-wrappers-python
-date: 2011-12-30
-publish: yes
-tags: [python]
-~~~
--->
-
-#Decorators and Wrappers in Python
 
 Python has a really nifty language feature that I use and like a lot - decorators (or wrappers). They're great for writing a wide variety of reusable code that can work in a lot of different contexts. Using them is really easy, but writing them is a little unintuitive. Here's a quick and dirty guide. 
 
 As an example, if you're using the (excellent) [webapp](http://code.google.com/p/webapp-improved/) microframework on GAE, you might be writing handler functions to handle your requests like this:
 
-    :::python
-    def show_page(request):
-        # do stuff
-        return response
+```python
+def show_page(request):
+    # do stuff
+    return response
+```
 
 Now if you need to ensure that this handler is accessible only to logged in users, you can always do something like this:
 
-    :::python
-    def show_page(request):
-        authenticator.authenticate(request)
-        # do stuff
-        return response
+```python
+def show_page(request):
+    authenticator.authenticate(request)
+    # do stuff
+    return response
+```
 
 but after doing this often enough, I realized that I actually want this protective code outside of my handler methods and that I don't want the code I write to know that it's being protected. Nor do I want to keep writing the protection code into my methods themselves. So I just use a **decorator**, like this:
     
-    :::python
-    @authenticate
-    def show_page(request):
-        # do stuff
-        return response
+```python
+@authenticate
+def show_page(request):
+    # do stuff
+    return response
+```
 
 A lot of libraries and frameworks offer useful decorators - one of my favorites is the `@property` decorator for Python itself, and the `@cached_property` that webapp offers. Here's a simply way to write the `@authenticate` decorator. 
 
-    :::python
-    def authenticate(func):
-        def authenticate_and_call(*args, **kwargs):
-            if not Account.is_authentic(request): 
-                raise Exception('Authentication Failed.')
-            return func(*args, **kwargs)
-        return authenticate_and_call
+```python
+def authenticate(func):
+    def authenticate_and_call(*args, **kwargs):
+        if not Account.is_authentic(request): 
+            raise Exception('Authentication Failed.')
+        return func(*args, **kwargs)
+    return authenticate_and_call
+```
 
 This is why decorators are also called 'wrappers'. What Python does when it sees `@decorator` is to call the `decorator` function with the wrapped function as it's first argument (in this case the `show_page` function). 
 
@@ -61,8 +54,9 @@ Here's the important things to remember when writing a wrapper function:
 
 A correctly written wrapper will also be usable without the `@decorator`, so
     
-    :::python
-    authenticated_show_page = authenticate(show_page)
+```python
+  authenticated_show_page = authenticate(show_page)
+```
 
 should yield exactly the same result as using `@authenticate` on `show_page`. You might even prefer this way of doing things sometimes, especially if you want to expose both the wrapped and unwrapped methods. 
 
@@ -70,16 +64,18 @@ should yield exactly the same result as using `@authenticate` on `show_page`. Yo
 
 It's also possible to use multiple wrappers on your methods:
     
-    :::python
-    @decorator2
-    @decorator1
-    def some_method():
-        # do stuff
+```python
+@decorator2
+@decorator1
+def some_method():
+    # do stuff
+```
 
 The order does matter, making this exactly the same as 
 
-    :::python
-    wrapped_method = decorator2(decorator1(some_method))
+```python
+  wrapped_method = decorator2(decorator1(some_method))
+```
 
 ###Usage Ideas
 
@@ -98,40 +94,43 @@ Once you're comfortable with writing and using decorators, you might want to loo
 
 They're actually simpler than they sound, though. They're just decorators that take arguments which affect how they work. Here's an example:
 
-    :::python
-    def authorize(role):
-        def wrapper(func):
-            def authorize_and_call(*args, **kwargs):
-                if not current_user.has(role): 
-                    raise Exception('Unauthorized Access!')
-                return func(*args, **kwargs)
-            return authorize_and_call
-        return wrapper
+```python
+def authorize(role):
+    def wrapper(func):
+        def authorize_and_call(*args, **kwargs):
+            if not current_user.has(role): 
+                raise Exception('Unauthorized Access!')
+            return func(*args, **kwargs)
+        return authorize_and_call
+    return wrapper
 
-    @authorize('admin')
-    @authenticate
-    def show_page(request):
-        # do stuff
+@authorize('admin')
+@authenticate
+def show_page(request):
+    # do stuff
+```
 
 We've simply added another level to the way decorators normally work. In terms of code, this is the same as 
 
-    :::python
-    authorized_show_page = authorize('admin')(authenticate(show_page))
+```python
+authorized_show_page = authorize('admin')(authenticate(show_page))
+```
 
 Another (simpler) form of writing this would be as a plain class:
 
-    :::python
-    class Authorize(object):
-        def __init__(self, role):
-            self.role = role        
-        def __call__(self, func):
-            def authorize_and_call(*args, **kwargs):
-                if not current_user.has(role): 
-                    raise Exception('Unauthorized Access!')
-                return func(*args, **kwargs)
-            return authorize_and_call
+```python
+class Authorize(object):
+    def __init__(self, role):
+        self.role = role
+    def __call__(self, func):
+        def authorize_and_call(*args, **kwargs):
+            if not current_user.has(role): 
+                raise Exception('Unauthorized Access!')
+            return func(*args, **kwargs)
+        return authorize_and_call
+```
 
-Both these methods are functionally equivalent - use whichever style makes more sense to you.             
+Both these methods are functionally equivalent - use whichever style makes more sense to you.
 
 So meta-decorators are a little more complex when written as functions, but easier when expressed as classes. Either way, they're pretty neat once you wrap your head around them. 
 

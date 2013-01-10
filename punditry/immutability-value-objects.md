@@ -1,14 +1,3 @@
-<!--
-~~~
-title: "The Unchangeables: Immutability and Value Objects"
-slug: /immutability-and-value-objects
-date: 2011-12-07
-publish: yes
-tags: [programming, punditry, OOP]
-~~~
--->
-
-#The Unchangeables: Immutability and Value Objects
 
 This post was born out of the discussions and sessions in training programs that I've conducted in the last couple of years. It turns out that a lot of programmers, both fresh graduates and those with a lot of experience, just don't think about [immutability][im] and [value][vo1] [objects][vo2]. 
 
@@ -26,22 +15,24 @@ One example that I exercise that I use often is a length conversion problem:
 
 When people try this in Java, here's some of the code I commonly see:
 
-    :::java
-    Meter lengthOne = new Meter(1);
-    Centimeter lengthTwo = Units.convertMeterToCentimeter(lengthOne);
-    Millimeter lengthThree = Units.convertCentimeterToMillimeter(lengthTwo);
-    Meter lengthFour = Units.convertMillimeterToMeter(lengthThree);
-    assertEquals(lengthOne, lengthFour);
+```java
+Meter lengthOne = new Meter(1);
+Centimeter lengthTwo = Units.convertMeterToCentimeter(lengthOne);
+Millimeter lengthThree = Units.convertCentimeterToMillimeter(lengthTwo);
+Meter lengthFour = Units.convertMillimeterToMeter(lengthThree);
+assertEquals(lengthOne, lengthFour);
+```
 
 While this would technically get the job done, the API here is horrendous. The number of static conversion methods will quickly explode as we add more types of units, there's isn't much type safety (I can't just accept a `Length` without caring what unit it is) and it just looks really ugly. 
 
 With a little thought and skill, this can quickly be re-written to
 
-    :::java
-    Length oneMeter = new Meter(1);
-    Length tenCentimeters = new Centimeter(10)
-    assertEquals(oneMeter, tenCentimeters);
-    new Millimeter(oneMeter).toString() //-> 1000mm 
+```java
+Length oneMeter = new Meter(1);
+Length tenCentimeters = new Centimeter(10)
+assertEquals(oneMeter, tenCentimeters);
+new Millimeter(oneMeter).toString() //-> 1000mm 
+```
 
 The foundational premise here is that all objects representing length (of any unit) are basically just holding one value - a distance. That's all that matters. Everything else is just cruft. 
 
