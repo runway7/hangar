@@ -17,7 +17,7 @@ One of the things that intrigued me most about the language (or rather, dialect)
 I'm glad to say I'm quite happy with CoffeeScript, though. Here's how things work:
 
 ```coffeescript
-  class Animal
+class Animal
 ```
 
 compiles to 
