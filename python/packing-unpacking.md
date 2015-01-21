@@ -66,3 +66,5 @@ I'm sure there's a lot more uses you can think of and see for these little `*`s.
 **Edits & Credits:**
 
 * Thanks to [Florian Mayer](http://twitter.com/#!/segfaulthunter) for pointing out that `super(self.__class__, self).__init__()` would result in infinite recursion if a subclass is written and used. `self` would still refer to the instance of the subclass when the call comes up the chain.
+* Thanks to Oleg Mitrofanov for the corrections about `args` being a tuple.
+
