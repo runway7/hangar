@@ -1,4 +1,8 @@
-
+---
+title: jQuery Deconstructed: The .each() method
+url: /javascript/jquery/each-method
+tags: [javascript, jquery, decon]
+---
 *As a follow-up to the [Javascript Guide][js-guide], the jQuery Deconstructed series takes a deeper look at how common jQuery code works. I'm doing the series to make me get into the habit of reading and understanding other people's code.*
 
 One of the fundamental functions of jQuery is `.each()`. Besides being incredibly useful in a wide variety of cases, it's also used extensively inside jQuery itself. One very common case is when you call any method on a jQuery collection returned by `$`. How do you think the method is applied on all the objects in the collection?
