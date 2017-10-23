@@ -1,3 +1,8 @@
+---
+title: Tracking changes to files
+url: /python/tracking-file-changes
+tags: [python]
+---
 
 When you run a `watch` in [Forklift][forklift], it waits for files to be changed and runs tests on each change. This took a little bit of work to get right. 
 
