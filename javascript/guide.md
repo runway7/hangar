@@ -1,3 +1,9 @@
+---
+title: The Javascript Guide to Objects, Functions, Scope, Prototypes and Closures
+tags: javascript, guide
+url: /javascript/guide
+---
+
 Throughout my time writing Javascript code, I've come to realize that while I love the language to bits, it is a little difficult to understand. A lot of people have attributed this to its  (admittedly not so great) design, or its obvious deviations from the paths well worn by other languages. Either way, understanding a few simple truths can go a long way with JS. What follows is the condensed and written version of the introductory class on JavaScript that I give at training programs and user groups.
 
 Let's dive in with objects and variables. 
