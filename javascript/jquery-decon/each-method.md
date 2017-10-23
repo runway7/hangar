@@ -1,5 +1,5 @@
 ---
-title: jQuery Deconstructed: The .each() method
+title: "jQuery Deconstructed: The .each() method"
 url: /javascript/jquery/each-method
 tags: [javascript, jquery, decon]
 ---
