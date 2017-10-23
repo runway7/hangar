@@ -1,3 +1,8 @@
+---
+title: Quick and Easy Javascript Namespacing
+url: /javascript/namespacing
+tags: [javascript]
+---
 
 One of the ways to stop polluting the global environment in  Javascript is namespacing - holding all your objects and data in a hierarchy  inside of one variable. 
 
