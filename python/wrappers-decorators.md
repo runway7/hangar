@@ -1,3 +1,8 @@
+---
+title: Decorators and Wrappers in Python
+url: /python/decorators-and-wrappers
+tags: [python]
+---
 
 Python has a really nifty language feature that I use and like a lot - decorators (or wrappers). They're great for writing a wide variety of reusable code that can work in a lot of different contexts. Using them is really easy, but writing them is a little unintuitive. Here's a quick and dirty guide. 
 
