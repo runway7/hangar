@@ -1,3 +1,8 @@
+---
+title: "The Unchangeables: Immutability and Value Objects"
+url: /punditry/immutability-value-objects
+tags: [programming, punditry, oop]
+---
 
 This post was born out of the discussions and sessions in training programs that I've conducted in the last couple of years. It turns out that a lot of programmers, both fresh graduates and those with a lot of experience, just don't think about [immutability][im] and [value][vo1] [objects][vo2]. 
 
