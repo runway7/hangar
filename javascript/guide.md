@@ -1,6 +1,6 @@
 ---
 title: The Javascript Guide to Objects, Functions, Scope, Prototypes and Closures
-tags: javascript, guide
+tags: [javascript, guide]
 url: /javascript/guide
 ---
 
