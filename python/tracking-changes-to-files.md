@@ -38,4 +38,3 @@ This works pretty well - one minor issue is that it doesn't really take a snapsh
 
 [forklift]: http://www.runway7.net/forklift
 [watchdog]: http://packages.python.org/watchdog/
-

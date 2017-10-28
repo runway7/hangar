@@ -62,7 +62,6 @@ Immutability also helps secure your code against other code (either someone else
 The implementing both value objects and immutability is more enforceable when using static languages like Java and C#, where constructs like Java's `private` and `final` keyword come in handy. Even in dynamic languages like Ruby and Python, it's still possible, though [slightly][ruby-accessors] more [roundabout][python-property]. 
 
 
-
 [vo1]: http://domaindrivendesign.org/node/135
 [vo2]: http://devlicio.us/blogs/casey/archive/2009/02/13/ddd-entities-and-value-objects.aspx
 [im]: http://en.wikipedia.org/wiki/Immutable_object

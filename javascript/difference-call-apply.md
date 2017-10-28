@@ -85,5 +85,4 @@ So that's where `apply` comes in - the second argument needs to be an array, whi
 
 So that's the difference between `call` and `apply`. Both can be called on functions, which they run in the context of the first argument. In `call` the subsequent arguments are passed in to the function as they are, while `apply` expects the second argument to be an array that it unpacks as arguments for the called function. 
 
-
 [guide]: http://hangar.runway7.net/javascript-guide-to-objects-functions-scope-prototpyes-closures

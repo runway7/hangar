@@ -45,5 +45,3 @@ The code itself is fairly simple if you're into functional programming and have 
 If you're not familiar with functional programming, hopefully there'll be a post soon with some examples (at least for `map` and `reduce`). [Subscribe](http://feeds.feedburner.com/hangar-runway7) if you don't want to miss it.
 
 It normally helps to add the `ns` to jQuery (or to any other library) as a plugin. Also, since `reduce` as a built-in function is fairly new, not all browsers support it. Feel free to replace it with a [library-provided method](http://documentcloud.github.com/underscore/#reduce), or add [this implementation](http://www.tutorialspoint.com/javascript/array_reduce.htm) in. If you're using NodeJS, you'll definitely want to replace `window`, probably in [an environment-agnostic way](https://github.com/documentcloud/underscore/blob/9c88b723629b8a225f79ca788d92536b1ce04e1d/underscore.js#L51).
-
-

@@ -61,7 +61,7 @@ Here's the important things to remember when writing a wrapper function:
 A correctly written wrapper will also be usable without the `@decorator`, so
     
 ```python
-  authenticated_show_page = authenticate(show_page)
+authenticated_show_page = authenticate(show_page)
 ```
 
 should yield exactly the same result as using `@authenticate` on `show_page`. You might even prefer this way of doing things sometimes, especially if you want to expose both the wrapped and unwrapped methods. 
@@ -80,7 +80,7 @@ def some_method():
 The order does matter, making this exactly the same as 
 
 ```python
-  wrapped_method = decorator2(decorator1(some_method))
+wrapped_method = decorator2(decorator1(some_method))
 ```
 
 ### Usage Ideas
@@ -149,14 +149,3 @@ Have fun using decorators - they're a great way to clean up, cut down and make y
 * Thanks to [redditor hylje](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cqik6) for the idea of expressing decorators as simple classes. Makes things a lot easier to understand. Thanks also for the lead on `functools.wrap`.
 
 * Thanks to [redditor Allanon001](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cx4pv) for pointing out that I'd forgotten the `return` in the function and the  decorator class examples. 
-
-
-
-
-
-
-
-
-
-
-
