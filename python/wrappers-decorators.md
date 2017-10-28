@@ -2,6 +2,7 @@
 title: Decorators and Wrappers in Python
 url: /python/decorators-and-wrappers
 tags: [python]
+published: true
 ---
 
 Python has a really nifty language feature that I use and like a lot - decorators (or wrappers). They're great for writing a wide variety of reusable code that can work in a lot of different contexts. Using them is really easy, but writing them is a little unintuitive. Here's a quick and dirty guide. 
@@ -50,7 +51,7 @@ This new function that you return in the decorator might or might not call the f
 
 So the `authenticate` decorator defines a new function called `authenticate_and_call` and returns this. This function is now going to be used instead of `show_page`. Calling it first checks if the request is authentic, and then calls `show_page`.
 
-###Common Gotchas
+### Common Gotchas
 
 Here's the important things to remember when writing a wrapper function: 
 
@@ -65,7 +66,7 @@ A correctly written wrapper will also be usable without the `@decorator`, so
 
 should yield exactly the same result as using `@authenticate` on `show_page`. You might even prefer this way of doing things sometimes, especially if you want to expose both the wrapped and unwrapped methods. 
 
-###Multiple decorators
+### Multiple decorators
 
 It's also possible to use multiple wrappers on your methods:
     
@@ -82,7 +83,7 @@ The order does matter, making this exactly the same as
   wrapped_method = decorator2(decorator1(some_method))
 ```
 
-###Usage Ideas
+### Usage Ideas
 
 If this is your first time with decorators, you might be wondering what to do with them. Here's some things I've seen and used them for (in all these cases, they let you add functionality transparently and without any changes inside the method):
 
@@ -94,7 +95,7 @@ If this is your first time with decorators, you might be wondering what to do wi
 
 These are just the common use cases - I'm sure there are tons more that I haven't seen yet.
 
-###Meta decorators
+### Meta decorators
 Once you're comfortable with writing and using decorators, you might want to look at the last level of decorator-fu: meta decorators. These are functions that take an argument based on which they return a function that accepts the wrapped function and returns a function that wraps the wrapped function (I hope I actually got that right).
 
 They're actually simpler than they sound, though. They're just decorators that take arguments which affect how they work. Here's an example:
@@ -143,7 +144,7 @@ One final point thing to keep in mind is that trying to check the `__name__` and
 
 Have fun using decorators - they're a great way to clean up, cut down and make your code much more readable. The only (rare) problem is that they might make your functions a little more difficult to test because of the unrelated code that runs every time they're called. 
 
-**Edits & Credits:**
+##### Edits & Credits:
 
 * Thanks to [redditor hylje](http://www.reddit.com/r/Python/comments/nxjsp/decorators_and_wrappers_in_python/c3cqik6) for the idea of expressing decorators as simple classes. Makes things a lot easier to understand. Thanks also for the lead on `functools.wrap`.
 

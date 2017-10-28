@@ -2,6 +2,7 @@
 title: Packing and Unpacking Arguments in Python
 url: /python/packing-unpacking-arguments
 tags: [python]
+published: true
 ---
 Ever wondered what the `*args` and `**kwargs` that you keep seeing in Python functions mean? I certainly did. So I did some searching and it turns they're pretty nifty, not to mention useful. 
 
@@ -67,7 +68,7 @@ Combined together packing and unpacking lets you do a lot of things like:
 
 I'm sure there's a lot more uses you can think of and see for these little `*`s. Have fun. 
 
-**Edits & Credits:**
+##### Edits & Credits:
 
 * Thanks to [Florian Mayer](http://twitter.com/#!/segfaulthunter) for pointing out that `super(self.__class__, self).__init__()` would result in infinite recursion if a subclass is written and used. `self` would still refer to the instance of the subclass when the call comes up the chain.
 * Thanks to [Oleg Mitrofanov](https://www.linkedin.com/in/olegmitrofanov) for the corrections about `args` being a tuple.

@@ -2,6 +2,7 @@
 title: "The Unchangeables: Immutability and Value Objects"
 url: /punditry/immutability-value-objects
 tags: [programming, punditry, oop]
+published: true
 ---
 
 This post was born out of the discussions and sessions in training programs that I've conducted in the last couple of years. It turns out that a lot of programmers, both fresh graduates and those with a lot of experience, just don't think about [immutability][im] and [value][vo1] [objects][vo2]. 
@@ -46,7 +47,7 @@ As soon as we realize that, we can just write code to store one value in a stand
 By simply recognizing that all of the possible objects in this exercise are simply value objects, we can come up with a design that's far more extendable, readable and elegant… not to mention useful. 
 
 
-###Immutability
+### Immutability
 
 The other side of the metaphorical coin is immutability. While immutability and value objects don't necessary need to go hand in hand, I find that they often do, and bring mutual benefits. 
 

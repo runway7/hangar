@@ -2,6 +2,7 @@
 title: Partial Functions / Currying in Python
 url: /python/partial-functions-currying
 tags: [python, functional]
+published: true
 ---
 
 Python, while being a fully object-oriented language, has a fairly rich set of functional programming tools too. I'm discovering more and more of them as a I go along, continually being surprised at how neatly functional programming solves some of the common problems I've seen. 

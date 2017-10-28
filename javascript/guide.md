@@ -2,6 +2,7 @@
 title: The Javascript Guide to Objects, Functions, Scope, Prototypes and Closures
 tags: [javascript, guide]
 url: /javascript/guide
+published: true
 ---
 
 Throughout my time writing Javascript code, I've come to realize that while I love the language to bits, it is a little difficult to understand. A lot of people have attributed this to its  (admittedly not so great) design, or its obvious deviations from the paths well worn by other languages. Either way, understanding a few simple truths can go a long way with JS. What follows is the condensed and written version of the introductory class on JavaScript that I give at training programs and user groups.
@@ -225,15 +226,10 @@ Closures are especially useful in AJAX code. More often than not, you'll find yo
 
 This is a fairly small start down the road to JavaScript mastery and there's still a long way to go, but, as always, actually trying things out and reading other people's good code is a great way to move forward.
 
-**Edits & Credits:** 
+##### Edits & Credits:
 
 * Thanks to Matthew for pointing out that `formatter(x, y)` should have been `formatter()` in the closures example.
 
 * Thanks to Marc Prud'hommeaux for taking the time to point out my typos.
 
 * Thanks to Gavin M for pointing out a misplaced semicolon next to Marvin's age.
-
-
-
-
-

@@ -2,6 +2,7 @@
 title: How CoffeeScript Class Modeling Works
 url: /coffeescript/class-model
 tags: [javascript, coffeescript, oop]
+published: true
 ---
 If you haven't taken a look at [CoffeeScript](http://coffeescript.org/), do it now. 
 

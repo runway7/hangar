@@ -2,6 +2,7 @@
 title: The Difference Between Call and Apply in Javascript
 url: /javascript/difference-call-apply
 tags: [javascript]
+published: true
 ---
 
 One very common thing that trips me up when writing Javascript is knowing when to use `call` and when to use `apply`. If you're wondering what these methods are, or don't know how scope works in JavaScript, then it might make sense to read the [Javascript Guide][guide] first.
