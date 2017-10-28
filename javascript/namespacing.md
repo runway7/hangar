@@ -35,7 +35,7 @@ var ns = function(namespace){
 Make sure that's included first, then do 
 
 ```javascript
-  ns('Foods.Grains.Wheat');
+ns('Foods.Grains.Wheat');
 ```
 
 at the top of each file that you use it in. 
